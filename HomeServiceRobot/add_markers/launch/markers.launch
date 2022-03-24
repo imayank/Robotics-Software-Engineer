@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<launch>
+  <node name="add_markers" pkg="add_markers" type="add_markers">
+    <param name="drop_x" value="7.5"/>
+    <param name="drop_y" value="1.0"/>
+    <param name="drop_a" value="1.0"/>
+    
+    <param name="pick_x" value="-5.4"/>
+    <param name="pick_y" value="6.0"/>
+    <param name="pick_a" value="1.0"/>
+  </node>
+</launch>

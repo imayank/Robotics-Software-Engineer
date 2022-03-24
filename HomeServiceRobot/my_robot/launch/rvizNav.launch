@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<launch>
+  <arg name="rviz_file" value="$(rospack find my_robot)/../rvizConfig/nav.rviz"/>
+  <node type="rviz" name="rviz" pkg="rviz" args="-d $(arg rviz_file)" />
+</launch>

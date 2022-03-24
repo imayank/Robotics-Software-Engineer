@@ -1,0 +1,214 @@
+<?xml version='1.0'?>
+<sdf version='1.4'>
+  <model name="my_robot">
+    <static>false</static>
+
+    <link name='chassis'>
+      <pose>0 0 .1 0 0 0</pose>
+      <collision name='collision'>
+        <geometry>
+          <box>
+            <size>.5 .2 .1</size>
+          </box>
+        </geometry>
+      </collision>
+
+      <visual name='visual'>
+        <geometry>
+          <box>
+            <size>.5 .2 .1</size>
+          </box>
+        </geometry>
+        <material> 
+          <ambient>0.1 0.1 0.1 1</ambient>
+          <diffuse>0.1 0.1 0.2 1</diffuse>
+          <specular>0 0 0 0</specular>
+          <emissive>0 0 0 1</emissive>
+        </material> 
+      </visual>
+    </link>
+
+    <link name="front_left_wheel">
+      <pose>0.15 0.13 0.1 0 1.5707 1.5707</pose>
+      <collision name="collision">
+        <geometry>
+          <cylinder>
+            <radius>.1</radius>
+            <length>.05</length>
+          </cylinder>
+        </geometry>
+      </collision>
+      <visual name="visual">
+        <geometry>
+          <cylinder>
+            <radius>.1</radius>
+            <length>.05</length>
+          </cylinder>
+        </geometry>
+        <material> 
+          <ambient>0 0 0 1</ambient>
+          <diffuse>0 0 0 1</diffuse>
+          <specular>0 0 0 0</specular>
+          <emissive>0 1 0 1</emissive>
+        </material> 
+      </visual>
+    </link>
+
+    <link name="front_right_wheel">
+      <pose>0.15 -0.13 0.1 0 1.5707 1.5707</pose>
+      <collision name="collision">
+        <geometry>
+          <cylinder>
+            <radius>.1</radius>
+            <length>.05</length>
+          </cylinder>
+        </geometry>
+      </collision>
+      <visual name="visual">
+        <geometry>
+          <cylinder>
+            <radius>.1</radius>
+            <length>.05</length>
+          </cylinder>
+        </geometry>
+        <material> 
+          <ambient>0 0 0 1</ambient>
+          <diffuse>0 0 0 1</diffuse>
+          <specular>0 0 0 0</specular>
+          <emissive>0 1 0 1</emissive>
+        </material> 
+      </visual>
+    </link>
+
+    <link name="back_left_wheel">
+      <pose>-0.15 0.13 0.1 0 1.5707 1.5707</pose>
+      <collision name="collision">
+        <geometry>
+          <cylinder>
+            <radius>.1</radius>
+            <length>.05</length>
+          </cylinder>
+        </geometry>
+      </collision>
+      <visual name="visual">
+        <geometry>
+          <cylinder>
+            <radius>.1</radius>
+            <length>.05</length>
+          </cylinder>
+        </geometry>
+        <material> 
+          <ambient>0 0 0 1</ambient>
+          <diffuse>0 0 0 1</diffuse>
+          <specular>0 0 0 0</specular>
+          <emissive>0 1 0 1</emissive>
+        </material>
+      </visual>
+
+    </link>
+
+    <link name="back_right_wheel">
+      <pose>-0.15 -0.13 0.1 0 1.5707 1.5707</pose>
+      <collision name="collision">
+        <geometry>
+          <cylinder>
+            <radius>.1</radius>
+            <length>.05</length>
+          </cylinder>
+        </geometry>
+      </collision>
+      <visual name="visual">
+        <geometry>
+          <cylinder>
+            <radius>.1</radius>
+            <length>.05</length>
+          </cylinder>
+        </geometry>
+        <material> <!-- LED material -->
+          <ambient>0 0 0 1</ambient>
+          <diffuse>0 0 0 1</diffuse>
+          <specular>0 0 0 0</specular>
+          <emissive>0 1 0 1</emissive>
+        </material> <!-- End LED material -->
+      </visual>
+    </link>
+
+    <link name="sensor_holder">
+      <pose>-0.2 0 0.2 0 0 0</pose>
+      <collision name="collision">
+        <geometry>
+          <cylinder>
+            <radius>.05</radius>
+            <length>.1</length>
+          </cylinder>
+        </geometry>
+      </collision>
+      <visual name="visual">
+        <geometry>
+          <cylinder>
+            <radius>.025</radius>
+            <length>.1</length>
+          </cylinder>
+        </geometry>
+      </visual>
+    </link>
+
+    <include>
+      <uri>model://camera</uri>
+      <pose>-0.2 0 0.3 0 0 0</pose>
+    </include>
+    <joint name="camera_joint" type="fixed">
+      <child>camera::link</child>
+      <parent>sensor_holder</parent>
+    </joint>
+
+    <joint type="revolute" name="sensor_holder_chasis_joint">
+      <pose>0 0 0 0 0 0</pose>
+      <child>sensor_holder</child>
+      <parent>chassis</parent>
+      <axis>
+        <xyz>0 0 1</xyz>
+      </axis>
+    </joint>
+
+
+    <joint type="revolute" name="front_left_wheel_joint">
+      <pose>0 0 -0.03 0 0 0</pose>
+      <child>front_left_wheel</child>
+      <parent>chassis</parent>
+      <axis>
+        <xyz>0 1 0</xyz>
+      </axis>
+    </joint>
+
+    <joint type="revolute" name="front_right_wheel_joint">
+      <pose>0 0 0.03 0 0 0</pose>
+      <child>front_right_wheel</child>
+      <parent>chassis</parent>
+      <axis>
+        <xyz>0 1 0</xyz>
+      </axis>
+    </joint>
+
+    <joint type="revolute" name="back_left_wheel_joint">
+      <pose>0 0 -0.03 0 0 0</pose>
+      <child>back_left_wheel</child>
+      <parent>chassis</parent>
+      <axis>
+        <xyz>0 1 0</xyz>
+      </axis>
+    </joint>
+
+    <joint type="revolute" name="back_right_wheel_joint">
+      <pose>0 0 0.03 0 0 0</pose>
+      <child>back_right_wheel</child>
+      <parent>chassis</parent>
+      <axis>
+        <xyz>0 1 0</xyz>
+      </axis>
+    </joint>
+
+
+
+  </model>
+</sdf>
